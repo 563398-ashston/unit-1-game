@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayerMask;
     bool isGrounded;
     public GameObject weapon;
+    public CoinManager cm;
 
 
     void Start()
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            yvel = 6;
+            yvel = 10;
         }
 
         rb.linearVelocity = new Vector3(xvel, yvel, 0);
@@ -122,7 +123,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            cm.coinCount++;
+        }
+    }
 
 
     public bool ExtendedRayCollisionCheck(float xoffs, float yoffs)

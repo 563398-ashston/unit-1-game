@@ -16,9 +16,9 @@ public class PickUpScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameObject.CompareTag("Coin"))
+        if (gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 }
