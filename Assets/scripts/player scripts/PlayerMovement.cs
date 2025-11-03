@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             yvel = 10;
+            print("player jumped");
+            anim.SetBool("isJumping", true);
         }
 
         rb.linearVelocity = new Vector3(xvel, yvel, 0);
@@ -76,16 +78,11 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isWalking", false);
         }
 
-        if (yvel >= 0.1f)
+        //check for landing back on the ground 
+        if (yvel <0 && isGrounded)
         {
-            anim.SetBool("isJumping", true);
-            print("player jumped");
+            anim.SetBool ("isJumping", false);
         }
-        else
-        {
-         anim.SetBool("isJumping", false);
-        }
-
 
 
         if (ExtendedRayCollisionCheck(0, 0.5f) == true)
@@ -97,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
 
         }
-        print("isgrounded=" + isGrounded);
 
         if (Input.GetKeyDown("w"))
         {
@@ -110,6 +106,11 @@ public class PlayerMovement : MonoBehaviour
 
             rb.transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y + 2, transform.position.z);
         }
+
+
+        print("isgrounded=" + isGrounded + "  yvel=" + yvel );
+
+
     }
 
 
