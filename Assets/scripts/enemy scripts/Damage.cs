@@ -22,6 +22,7 @@ public class Damage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+
             if (playerHealth == null)
             {
                 playerHealth = collision.gameObject.GetComponent<HealthScript>();

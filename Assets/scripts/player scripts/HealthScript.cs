@@ -17,13 +17,16 @@ public class HealthScript : MonoBehaviour
     private void Start()
     { 
         health = maxHealth;
-        slider.maxValue = maxHealth;
-        slider.value = health;
     }
 
     public void Update()
     {
-        
+        if (slider != null)
+        {
+            slider.value = health;
+            slider.maxValue = maxHealth;
+
+        }
     }
 
     public void TakeDamage (int amount)
@@ -33,7 +36,15 @@ public class HealthScript : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            //reset player to resetpoint and reset health to max
+            PlayerMovement pm = GetComponent<PlayerMovement>();
+            transform.position = pm.resetPoint.position;
+            
         }
+    }
+
+    public void ResetHealth()
+    {
+        health = maxHealth;
     }
 }

@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     public GameObject weapon;
     public CoinManager cm;
+    public Transform resetPoint;
+
 
 
     void Start()
